@@ -25,7 +25,7 @@ const showNews =(News) =>{
     const url = `https://openapi.programming-hero.com/api/news/category/${News}`;
     fetch (url)
     .then (res => res.json())
-    .then (data => console.log(data.data));
+    .then (data => displayNews(data.data));
 }
 
 const displayNews = news => {
@@ -34,22 +34,30 @@ const displayNews = news => {
     news.forEach(categoryNews =>{
         console.log(categoryNews)
         const newsDiv = document.createElement('div');
+        newsDiv.classList.add('row')
         
         newsDiv.innerHTML = `
-        <div class="row g-0">
-                  <div class="col-md-4">
-                    <img src="..." class="img-fluid rounded-start" alt="...">
+        
+                  <div class="col-md-4 ">
+                    <img src="${categoryNews.thumbnail_url}" class="img-fluid rounded-start" alt="image">
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                      <h5 class="card-title">${categoryNews.title}</h5>
+                      <p class="card-text">${categoryNews.details}</p>
+                    <div class= "d-flex justify-content-between">
+                    <img class= "author-img" src="${categoryNews.author.img}" class="  rounded-start" alt="image">
+
+                    <p class="card-text"><small class="text-muted">${categoryNews.author.name}</small></p>
+
+                    <button class="btn btn-outline-secondary"><small>Read more..</small></button>
+                    </div>
+                    
                     </div>
                   </div>
-                </div>
+            
         `;
-        ulContainer.appendChild(categoryList);
+        newsContainer.appendChild(newsDiv);
     })
 
 }
