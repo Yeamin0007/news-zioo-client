@@ -3,3 +3,13 @@
     height: 40px;
     border-radius: 155px;
 }
+.news-img{
+    width: 240px;
+    height: 240px;
+}
+.row{
+    border: 1px solid rgb(206, 205, 205);
+    border-radius: 5px;
+    margin-bottom: 18px;
+    padding: 25px;
+}

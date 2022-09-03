@@ -30,7 +30,7 @@ const showNews =(News) =>{
 
 const displayNews = news => {
     const newsContainer = document.getElementById('news-container');
-
+    newsContainer.innerHTML = ``;
     news.forEach(categoryNews =>{
         console.log(categoryNews)
         const newsDiv = document.createElement('div');
@@ -39,19 +39,30 @@ const displayNews = news => {
         newsDiv.innerHTML = `
         
                   <div class="col-md-4 ">
-                    <img src="${categoryNews.thumbnail_url}" class="img-fluid rounded-start" alt="image">
+                    <img src="${categoryNews.thumbnail_url}" class=" news-img rounded" alt="image">
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
                       <h5 class="card-title">${categoryNews.title}</h5>
-                      <p class="card-text">${categoryNews.details}</p>
-                    <div class= "d-flex justify-content-between">
-                    <img class= "author-img" src="${categoryNews.author.img}" class="  rounded-start" alt="image">
+                      <p class="card-text">${categoryNews.details.slice(0, 200)}</p>
+                    
+                      <div class = "d-flex justify-content-between pt-5">
+                      <div class= "d-flex ">
+                    <img  src="${categoryNews.author.img}" class=" author-img" alt="image">
 
-                    <p class="card-text"><small class="text-muted">${categoryNews.author.name}</small></p>
+                    <p class="card-text px-2"><small class="text-muted">${categoryNews.author.name ? categoryNews.author.name : 'Unknown'}</small></p>
 
-                    <button class="btn btn-outline-secondary"><small>Read more..</small></button>
+                    
                     </div>
+
+                    <div class= "d-flex">
+                    <i class="bi bi-eye-fill px-2"></i>
+
+                    <p class="card-text"><small class="text-muted">${categoryNews.total_view}</small></p>
+
+                    </div>
+                    <button class="btn btn-outline-secondary"><small>Read more..</small></button>
+                      </div>
                     
                     </div>
                   </div>
