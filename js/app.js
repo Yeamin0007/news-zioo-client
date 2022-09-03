@@ -101,7 +101,7 @@ const displayNews = (news,name) => {
                     <p class="card-text"><small class="text-muted">${categoryNews.total_view ? categoryNews.total_view : 'no view yet'}</small></p>
 
                     </div>
-                    <button onclick="loadNewsDetails('${categoryNews._id}')" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#newsDetailModal"><small>Read more..</small></button>
+                    <button onclick="loadNewsDetails('${categoryNews._id}')" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#newsDetailModal"><small>Read more..</small></button>
                     
                       </div>
                     
