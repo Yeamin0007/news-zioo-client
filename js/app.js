@@ -53,9 +53,16 @@ const displayNews = (news,name) => {
     const newsContainer = document.getElementById('news-container');
     newsContainer.innerHTML = ``;
     error.innerText = " Data not Found."
+
+    const footer = document.getElementById('footer');
+    footer.classList.add('fixed-bottom');
     
   } 
   else{
+    const footer = document.getElementById('footer');
+    footer.classList.remove('fixed-bottom');
+
+
     error.innerText = ""
     const newsContainer = document.getElementById('news-container');
     newsContainer.innerHTML = ``;
