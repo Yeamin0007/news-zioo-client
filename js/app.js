@@ -61,7 +61,8 @@ const displayNews = news => {
                     <p class="card-text"><small class="text-muted">${categoryNews.total_view}</small></p>
 
                     </div>
-                    <button class="btn btn-outline-secondary"><small>Read more..</small></button>
+                    <button onclick class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#newsDetailModal"><small>Read more..</small></button>
+                    
                       </div>
                     
                     </div>
