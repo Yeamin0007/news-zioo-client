@@ -20,3 +20,14 @@ body{
     background-color: rgb(250, 240, 240);
 }
 
+@media only screen and (max-width: 995px) {
+    .ul-list {
+      display: grid;
+      grid-template-columns: (1fr,2);
+      flex-direction: column;
+
+    }
+    .newsName{
+        padding: 12px 0;
+    }
+  }
