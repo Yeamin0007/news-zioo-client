@@ -11,24 +11,29 @@ const loadAllNews = () =>{
     const ulContainer = document.getElementById('ul-catagory');
 
     news_category.forEach(category =>{
-         console.log(category)
+         
         const categoryList = document.createElement('li');
         
         categoryList.innerHTML = `
-        <li onclick= "showNews('${category.category_id}')" class="list-group-item"> <a class="text-secondary text-decoration-none fs-5" href="#">${category.category_name}</a> </li>`;
+        <li  onclick= "showNews('${category.category_id}','${category.category_name}')" class="list-group-item newsName"> <a id="length-name" class=" text-secondary text-decoration-none fs-5" href="#">${category.category_name}</a> </li>`;
        
         ulContainer.appendChild(categoryList);
+          
+     
     })
-
-   
-
+    // let a = news_category.map(x=>x.category_name)
+    //     console.log(a)
+     
 }
 
-const showNews =(News) =>{
+const showNews =(News,name) =>{
+    let x = name
+    console.log(x)
     const url = `https://openapi.programming-hero.com/api/news/category/${News}`;
     fetch (url)
     .then (res => res.json())
-    .then (data => displayNews(data.data));
+    .then (data => displayNews(data.data,x));
+    toggleSpinner(true);
 }
 const toggleSpinner = isLoading => {
   const loadingSection = document.getElementById('loader');
@@ -40,22 +45,27 @@ const toggleSpinner = isLoading => {
   }
 }
 
-const displayNews = news => {
-  toggleSpinner(true);
+const displayNews = (news,name) => {
+  
   if(news.length == 0){
     toggleSpinner(false); 
     const error = document.getElementById('error');
+    const newsContainer = document.getElementById('news-container');
+    newsContainer.innerHTML = ``;
     error.innerText = " Data not Found."
-    
     
   } 
   else{
-
-
+    error.innerText = ""
     const newsContainer = document.getElementById('news-container');
     newsContainer.innerHTML = ``;
+
+    //sort
+    news.sort((first, second) => second.total_view - first.total_view)
+
+
     news.forEach(categoryNews =>{
-         console.log(categoryNews)
+         //console.log(categoryNews)
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('row')
         
@@ -95,13 +105,17 @@ const displayNews = news => {
         newsContainer.appendChild(newsDiv);
         
         toggleSpinner(false);
-
+        
    })
   }
    
-  error.innerText='';
-       
-
+    
+  let x = document.getElementsByClassName('row').length
+  
+  
+  //console.log(document.getElementById('length-name').innerText)
+  document.getElementById('length-news').innerText =  `${x} ITEM(S) FOUND IN  ${name.toUpperCase()}`
+  document.getElementById('length-news').style.border = 'border border-secondary'
 }
 
 
