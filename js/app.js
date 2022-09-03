@@ -4,7 +4,8 @@ const loadAllNews = () =>{
 
     fetch (url)
     .then (res => res.json())
-    .then (data => displayCategories(data.data.news_category));
+    .then (data => displayCategories(data.data.news_category))
+    .catch(error => console.log(error));
 }
 
  const displayCategories = news_category => {
@@ -32,7 +33,8 @@ const showNews =(News,name) =>{
     const url = `https://openapi.programming-hero.com/api/news/category/${News}`;
     fetch (url)
     .then (res => res.json())
-    .then (data => displayNews(data.data,x));
+    .then (data => displayNews(data.data,x))
+    .catch(error => console.log(error));
     toggleSpinner(true);
 }
 const toggleSpinner = isLoading => {
@@ -131,7 +133,8 @@ const loadNewsDetails = (_id) => {
   const url = `https://openapi.programming-hero.com/api/news/${_id}`;
   fetch (url)
   .then (res => res.json())
-  .then (data => modalNewsDetails(data.data));
+  .then (data => modalNewsDetails(data.data))
+  .catch(error => console.log(error));
 }
 
 const modalNewsDetails = modalDetails =>{
